@@ -1,15 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const content=' Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, culpa nemo? A dignissimos saepe aliquid, quos perferendis atque ad voluptates nostrum soluta ratione eos, provident, impedit alias. Molestias, iste veniam.';
+
+  const students=[
+    {name:'Tuhin',id:12,dept:'CSE'},
+    {name:'Arafat',id:13,dept:'CMS'},
+    {name:'Shakib',id:44,dept:'BBA'},
+    {name:'Sakira',id:77,dept:'ARTS'},
+    {name:'Subonra',id:77,dept:'MUSIC'},
+    {name:'Anika',id:77,dept:'PHARMACY'},
+  ]
+  const hotels = [
+    {hotel:'Seraton',cost:'$200/day',quality:'High Class'},
+    {hotel:'SonarGao',cost:'$150/day',quality:'Mid Class'},
+    {hotel:'Pankouri',cost:'$50/day',quality:'Low Class'},
+  ]
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
             <h2>React app is starting </h2>
             <MovieCounter></MovieCounter>
+            <hr/>
+            {
+              students.map( std => <Students name={std.name} id={std.id} dept={std.dept}></Students>)
+            }
+            {
+              hotels.map(hotelInfo => <Hotels hotel={hotelInfo.hotel} cost = {hotelInfo.cost} quality={hotelInfo.quality}></Hotels>)
+            }
+            <hr/>
+          
             <Blog name='HTML Blog' content ={content}></Blog>
             <Blog name ='CSS Blog' content={content}></Blog>
             <Blog name='JS Blog' content={content}></Blog>
@@ -45,7 +69,7 @@ const btnStyle={
     </div>
   )
 }
-
+// ---------------------------------Movie Counter State------------------------
 function MovieCounter(){
   //Declare state
     const [count, setCount]=  useState(0);
@@ -111,5 +135,29 @@ function LadiesDress(props){
   )
 }
 
+//Student Array Rendering using map 
 
+function Students(props){
+
+  return (
+
+    <div style={{width:'400px',border:'3px solid skyblue',borderRadius:'20px', backgroundColor:'#8A3321',padding:'30px', margin:'20px'}}>
+      <h1>Name: {props.name}</h1>
+      <h2>ID : {props.id}</h2>
+      <h2>Dept: {props.dept}</h2>
+    </div>
+  )
+}
+
+// Hotels Array rendering using map
+function Hotels(props){
+
+  return(
+    <div style={{width:'400px',border:'3px solid skyblue',borderRadius:'20px', backgroundColor:'black',padding:'30px', margin:'20px'}}>
+      <h2>Hotel: {props.hotel}</h2>
+      <h3>Cost: {props.cost}</h3>
+      <h3>Quality: {props.quality}</h3>
+    </div>
+  )
+}
 export default App;
